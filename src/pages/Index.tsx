@@ -53,8 +53,8 @@ export default function Index() {
             </div>
             
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight">
-              Veterinary Vaccines,{' '}
-              <span className="text-primary">Delivered Right</span>
+              Poultry & Pig Health,{' '}
+              <span className="text-primary">Precision No Limitations</span>
             </h1>
             
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -69,9 +69,9 @@ export default function Index() {
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
-              <Link to="/admin">
+              <Link to="/dashboard">
                 <Button variant="hero-outline" size="xl">
-                  Admin Dashboard
+                  Client Dashboard
                 </Button>
               </Link>
             </div>
@@ -104,7 +104,7 @@ export default function Index() {
         <div className="container-main">
           <div className="text-center mb-12">
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Why Choose VetVax Pro
+              Why Choose Pharmsave Vaccines
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Built for veterinary professionals who demand reliability, traceability, and flexibility.
@@ -172,7 +172,7 @@ export default function Index() {
             Ready to streamline your vaccine procurement?
           </h2>
           <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Join hundreds of veterinary professionals who trust VetVax Pro for their vaccine supply chain.
+            Join hundreds of veterinary professionals who trust Pharmsave for their vaccine supply chain.
           </p>
           <Link to="/catalog">
             <Button variant="secondary" size="xl">
