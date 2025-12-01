@@ -1,4 +1,4 @@
-import { Thermometer } from 'lucide-react';
+import { Syringe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function Footer() {
@@ -8,9 +8,12 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <Thermometer className="h-4 w-4 text-primary-foreground" />
+              <Syringe className="h-4 w-4 text-primary-foreground" />
             </div>
-            <span className="font-heading font-semibold text-foreground">VetVax Pro</span>
+            <div>
+              <span className="font-heading font-semibold text-foreground">Pharmsave Vaccines</span>
+              <span className="text-xs text-muted-foreground block">Precision No Limitations</span>
+            </div>
           </div>
           
           <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
@@ -29,7 +32,7 @@ export function Footer() {
           </nav>
           
           <p className="text-sm text-muted-foreground">
-            © 2024 VetVax Pro. All rights reserved.
+            © 2024 Pharmsave Enterprises Limited. All rights reserved.
           </p>
         </div>
       </div>

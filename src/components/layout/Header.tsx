@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, User, Menu, X, Thermometer } from 'lucide-react';
+import { ShoppingCart, User, Menu, X, Syringe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/context/CartContext';
@@ -23,11 +23,11 @@ export function Header() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <Thermometer className="h-5 w-5 text-primary-foreground" />
+            <Syringe className="h-5 w-5 text-primary-foreground" />
           </div>
           <div className="hidden sm:block">
-            <span className="font-heading text-lg font-bold text-foreground">VetVax</span>
-            <span className="text-xs text-muted-foreground block -mt-1">Pro</span>
+            <span className="font-heading text-lg font-bold text-foreground">Pharmsave</span>
+            <span className="text-xs text-muted-foreground block -mt-1">Vaccines</span>
           </div>
         </Link>
 
