@@ -12,7 +12,7 @@ export interface Batch {
 
 export interface Product {
   id: string;
-  sku: string;
+  batchNumber: string;
   name: string;
   brand: string;
   species: 'poultry' | 'swine';
@@ -24,6 +24,7 @@ export interface Product {
   coldChainRequired: boolean;
   storageTempRange: string;
   imageUrl: string;
+  imageAlt: string;
   tags: string[];
   minimumOrderQty: number;
   leadTimeDays: number;
@@ -36,7 +37,7 @@ export const products: Product[] = [
   // MSD Animal Health - Poultry
   {
     id: '1',
-    sku: 'MSD-NDV-001',
+    batchNumber: 'NDV-2024-A1',
     name: 'Newcastle Disease Vaccine',
     brand: 'MSD Animal Health',
     species: 'poultry',
@@ -52,6 +53,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Newcastle Disease Vaccine vial',
     tags: ['respiratory', 'essential', 'layer', 'broiler'],
     minimumOrderQty: 1,
     leadTimeDays: 3,
@@ -64,7 +66,7 @@ export const products: Product[] = [
   },
   {
     id: '2',
-    sku: 'MSD-IB-002',
+    batchNumber: 'IB-2024-B1',
     name: 'Infectious Bronchitis Vaccine',
     brand: 'MSD Animal Health',
     species: 'poultry',
@@ -80,6 +82,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Infectious Bronchitis Vaccine vial',
     tags: ['respiratory', 'layer', 'broiler'],
     minimumOrderQty: 1,
     leadTimeDays: 3,
@@ -92,7 +95,7 @@ export const products: Product[] = [
   },
   {
     id: '3',
-    sku: 'MSD-IBD-003',
+    batchNumber: 'IBD-2024-C1',
     name: 'Gumboro (IBD) Vaccine',
     brand: 'MSD Animal Health',
     species: 'poultry',
@@ -108,6 +111,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Gumboro IBD Vaccine vial',
     tags: ['immunosuppressive', 'broiler', 'layer'],
     minimumOrderQty: 2,
     leadTimeDays: 5,
@@ -120,7 +124,7 @@ export const products: Product[] = [
   },
   {
     id: '4',
-    sku: 'MSD-FPX-004',
+    batchNumber: 'FPX-2024-D1',
     name: 'Fowl Pox Vaccine',
     brand: 'MSD Animal Health',
     species: 'poultry',
@@ -135,6 +139,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Fowl Pox Vaccine vial',
     tags: ['skin disease', 'layer'],
     minimumOrderQty: 1,
     leadTimeDays: 7,
@@ -148,7 +153,7 @@ export const products: Product[] = [
   // Urban Farmer - Poultry
   {
     id: '5',
-    sku: 'UF-IBVAR-001',
+    batchNumber: 'UF-IBVAR-2024-01',
     name: 'Tabic IB VAR 206',
     brand: 'Urban Farmer',
     species: 'poultry',
@@ -164,6 +169,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Tabic IB VAR 206 vaccine vial',
     tags: ['respiratory', 'variant', 'layer', 'broiler'],
     minimumOrderQty: 1,
     leadTimeDays: 3,
@@ -176,7 +182,7 @@ export const products: Product[] = [
   },
   {
     id: '6',
-    sku: 'UF-SALM-002',
+    batchNumber: 'UF-SALM-2024-01',
     name: 'Salmonella Duo',
     brand: 'Urban Farmer',
     species: 'poultry',
@@ -192,6 +198,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Salmonella Duo vaccine vial',
     tags: ['food safety', 'layer', 'breeder', 'zoonotic'],
     minimumOrderQty: 1,
     leadTimeDays: 5,
@@ -204,7 +211,7 @@ export const products: Product[] = [
   },
   {
     id: '7',
-    sku: 'UF-MGBAC-003',
+    batchNumber: 'UF-MGBAC-2024-01',
     name: 'Mg Bac',
     brand: 'Urban Farmer',
     species: 'poultry',
@@ -220,6 +227,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Mg Bac vaccine vial',
     tags: ['respiratory', 'mycoplasma', 'layer', 'breeder'],
     minimumOrderQty: 1,
     leadTimeDays: 4,
@@ -234,7 +242,7 @@ export const products: Product[] = [
   // MSD Animal Health - Swine
   {
     id: '8',
-    sku: 'MSD-PCVMHYO-001',
+    batchNumber: 'PCVMHYO-2024-S1',
     name: 'PCV M+Hyo',
     brand: 'MSD Animal Health',
     species: 'swine',
@@ -250,6 +258,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'PCV M+Hyo vaccine vial',
     tags: ['circovirus', 'respiratory', 'nursery', 'grower'],
     minimumOrderQty: 1,
     leadTimeDays: 5,
@@ -262,7 +271,7 @@ export const products: Product[] = [
   },
   {
     id: '9',
-    sku: 'MSD-COLICLOS-002',
+    batchNumber: 'COLICLOS-2024-S1',
     name: 'Porcilis ColiClos',
     brand: 'MSD Animal Health',
     species: 'swine',
@@ -278,6 +287,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'Porcilis ColiClos vaccine vial',
     tags: ['enteric', 'sow', 'piglet protection', 'colibacillosis'],
     minimumOrderQty: 1,
     leadTimeDays: 5,
@@ -290,7 +300,7 @@ export const products: Product[] = [
   },
   {
     id: '10',
-    sku: 'MSD-MHYOID-003',
+    batchNumber: 'MHYOID-2024-S1',
     name: 'M+Hyo ID Once',
     brand: 'MSD Animal Health',
     species: 'swine',
@@ -306,6 +316,7 @@ export const products: Product[] = [
     coldChainRequired: true,
     storageTempRange: '2-8°C',
     imageUrl: '/placeholder.svg',
+    imageAlt: 'M+Hyo ID Once vaccine vial',
     tags: ['respiratory', 'mycoplasma', 'intradermal', 'needle-free'],
     minimumOrderQty: 1,
     leadTimeDays: 7,

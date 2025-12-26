@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, X } from 'lucide-react';
+import { Plus, X, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -29,10 +29,11 @@ interface DosePackInput {
 export function AddProductForm() {
   const [open, setOpen] = useState(false);
   const [dosePacks, setDosePacks] = useState<DosePackInput[]>([{ doses: '', unitsPerPack: '1' }]);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   
   const [formData, setFormData] = useState({
     name: '',
-    sku: '',
+    batchNumber: '',
     brand: '',
     species: 'poultry',
     type: 'live',
@@ -44,10 +45,24 @@ export function AddProductForm() {
     minimumOrderQty: '1',
     leadTimeDays: '3',
     administrationNotes: '',
+    imageUrl: '',
+    imageAlt: '',
   });
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+        handleInputChange('imageUrl', reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const addDosePack = () => {
@@ -68,7 +83,7 @@ export function AddProductForm() {
     e.preventDefault();
     
     // Validate required fields
-    if (!formData.name || !formData.sku || !formData.brand) {
+    if (!formData.name || !formData.batchNumber || !formData.brand) {
       toast({
         title: "Missing required fields",
         description: "Please fill in all required fields.",
@@ -97,7 +112,7 @@ export function AddProductForm() {
     // Reset form
     setFormData({
       name: '',
-      sku: '',
+      batchNumber: '',
       brand: '',
       species: 'poultry',
       type: 'live',
@@ -109,8 +124,11 @@ export function AddProductForm() {
       minimumOrderQty: '1',
       leadTimeDays: '3',
       administrationNotes: '',
+      imageUrl: '',
+      imageAlt: '',
     });
     setDosePacks([{ doses: '', unitsPerPack: '1' }]);
+    setImagePreview(null);
     setOpen(false);
   };
 
@@ -141,14 +159,59 @@ export function AddProductForm() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="sku">SKU *</Label>
+              <Label htmlFor="batchNumber">Batch Number *</Label>
               <Input
-                id="sku"
-                value={formData.sku}
-                onChange={(e) => handleInputChange('sku', e.target.value)}
-                placeholder="e.g., MSD-NDV-001"
+                id="batchNumber"
+                value={formData.batchNumber}
+                onChange={(e) => handleInputChange('batchNumber', e.target.value)}
+                placeholder="e.g., NDV-2024-A1"
                 required
               />
+            </div>
+          </div>
+
+          {/* Image Upload */}
+          <div className="space-y-3">
+            <Label>Product Image</Label>
+            <div className="flex items-start gap-4">
+              <div className="flex-1 space-y-2">
+                <div className="flex items-center gap-2">
+                  <label className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-lg cursor-pointer hover:bg-secondary/80 transition-colors">
+                    <Upload className="h-4 w-4" />
+                    <span className="text-sm">Upload Image</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="imageAlt">Image Alt Text</Label>
+                  <Input
+                    id="imageAlt"
+                    value={formData.imageAlt}
+                    onChange={(e) => handleInputChange('imageAlt', e.target.value)}
+                    placeholder="Describe the image for accessibility"
+                  />
+                </div>
+              </div>
+              {imagePreview && (
+                <div className="relative w-24 h-24 rounded-lg overflow-hidden border border-border">
+                  <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setImagePreview(null);
+                      handleInputChange('imageUrl', '');
+                    }}
+                    className="absolute top-1 right-1 p-1 bg-destructive rounded-full text-destructive-foreground"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 

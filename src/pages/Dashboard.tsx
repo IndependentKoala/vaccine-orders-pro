@@ -17,9 +17,7 @@ export default function Dashboard() {
     );
   });
 
-  const totalSpent = clientOrders
-    .filter(o => o.status === 'delivered')
-    .reduce((sum, o) => sum + o.totalAmount, 0);
+  const deliveredOrders = clientOrders.filter(o => o.status === 'delivered').length;
 
   return (
     <Layout>
@@ -82,8 +80,8 @@ export default function Dashboard() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Total Spent</p>
-                  <p className="font-heading text-3xl font-bold">${totalSpent.toFixed(0)}</p>
+                  <p className="text-sm text-muted-foreground mb-1">Delivered Orders</p>
+                  <p className="font-heading text-3xl font-bold">{deliveredOrders}</p>
                 </div>
                 <div className="h-12 w-12 rounded-lg bg-info/10 flex items-center justify-center">
                   <Clock className="h-6 w-6 text-info" />
@@ -116,12 +114,9 @@ export default function Dashboard() {
                         {format(new Date(order.createdAt), 'MMM d, yyyy')}
                       </p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Badge variant={order.status}>
-                        {order.status}
-                      </Badge>
-                      <p className="font-semibold">${order.totalAmount.toFixed(2)}</p>
-                    </div>
+                    <Badge variant={order.status}>
+                      {order.status}
+                    </Badge>
                   </div>
                 ))}
               </div>
