@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { 
-  BarChart3, Package, Users, Calendar, TrendingUp, 
+  BarChart3, Package, Users, Calendar,
   AlertTriangle, ChevronRight, Download
 } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
@@ -15,13 +15,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { AddProductForm } from '@/components/admin/AddProductForm';
 import { sampleOrders } from '@/data/orders';
 import { products } from '@/data/products';
 import { format, startOfMonth, endOfMonth, eachMonthOfInterval, addMonths, isWithinInterval } from 'date-fns';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
-const COLORS = ['hsl(174, 62%, 35%)', 'hsl(32, 95%, 55%)', 'hsl(152, 69%, 40%)', 'hsl(199, 89%, 48%)'];
-
+const COLORS = ['hsl(210, 100%, 45%)', 'hsl(210, 80%, 55%)', 'hsl(210, 60%, 65%)', 'hsl(210, 40%, 75%)'];
 export default function Admin() {
   const [forecastRange, setForecastRange] = useState('3');
 
@@ -42,13 +42,11 @@ export default function Admin() {
     );
 
     const totalQuantity = monthOrders.reduce((sum, item) => sum + item.quantity, 0);
-    const totalValue = monthOrders.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
 
     return {
       month: format(month, 'MMM yyyy'),
       orders: monthOrders.length,
       quantity: totalQuantity,
-      value: totalValue,
     };
   });
 
@@ -59,16 +57,15 @@ export default function Admin() {
     return {
       name: product.name.split(' ').slice(0, 2).join(' '),
       quantity: totalQuantity,
-      value: orders.reduce((sum, i) => sum + (i.unitPrice * i.quantity), 0),
     };
   });
 
   // Order status summary
   const statusSummary = [
-    { name: 'Requested', value: sampleOrders.filter(o => o.status === 'requested').length, color: 'hsl(199, 89%, 48%)' },
-    { name: 'Confirmed', value: sampleOrders.filter(o => o.status === 'confirmed').length, color: 'hsl(174, 62%, 35%)' },
+    { name: 'Requested', value: sampleOrders.filter(o => o.status === 'requested').length, color: 'hsl(210, 100%, 50%)' },
+    { name: 'Confirmed', value: sampleOrders.filter(o => o.status === 'confirmed').length, color: 'hsl(210, 80%, 45%)' },
     { name: 'Prepared', value: sampleOrders.filter(o => o.status === 'prepared').length, color: 'hsl(45, 93%, 47%)' },
-    { name: 'Dispatched', value: sampleOrders.filter(o => o.status === 'dispatched').length, color: 'hsl(32, 95%, 55%)' },
+    { name: 'Dispatched', value: sampleOrders.filter(o => o.status === 'dispatched').length, color: 'hsl(152, 69%, 40%)' },
   ];
 
   // Low stock products
@@ -94,10 +91,13 @@ export default function Admin() {
               Order management and demand forecasting
             </p>
           </div>
-          <Button variant="outline">
-            <Download className="h-4 w-4 mr-2" />
-            Export Report
-          </Button>
+          <div className="flex gap-3">
+            <AddProductForm />
+            <Button variant="outline">
+              <Download className="h-4 w-4 mr-2" />
+              Export Report
+            </Button>
+          </div>
         </div>
 
         {/* Quick Stats */}
@@ -150,13 +150,13 @@ export default function Admin() {
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-1">Total Revenue</p>
+                  <p className="text-sm text-muted-foreground mb-1">Total Products</p>
                   <p className="font-heading text-3xl font-bold">
-                    ${sampleOrders.reduce((sum, o) => sum + o.totalAmount, 0).toLocaleString()}
+                    {products.length}
                   </p>
                 </div>
                 <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <TrendingUp className="h-6 w-6 text-accent" />
+                  <Package className="h-6 w-6 text-accent" />
                 </div>
               </div>
             </CardContent>
@@ -216,9 +216,9 @@ export default function Admin() {
                             borderRadius: '8px'
                           }}
                         />
-                        <Bar dataKey="quantity" fill="hsl(174, 62%, 35%)" radius={[4, 4, 0, 0]} />
-                      </BarChart>
-                    </ResponsiveContainer>
+                          <Bar dataKey="quantity" fill="hsl(210, 100%, 50%)" radius={[4, 4, 0, 0]} />
+                        </BarChart>
+                      </ResponsiveContainer>
                   </div>
                 </CardContent>
               </Card>
@@ -276,7 +276,6 @@ export default function Admin() {
                       <tr className="border-b border-border">
                         <th className="text-left py-3 px-4 font-medium text-muted-foreground">Product</th>
                         <th className="text-right py-3 px-4 font-medium text-muted-foreground">Ordered Qty</th>
-                        <th className="text-right py-3 px-4 font-medium text-muted-foreground">Value</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -284,7 +283,6 @@ export default function Admin() {
                         <tr key={i} className="border-b border-border/50">
                           <td className="py-3 px-4 font-medium">{product.name}</td>
                           <td className="py-3 px-4 text-right">{product.quantity}</td>
-                          <td className="py-3 px-4 text-right">${product.value.toFixed(2)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -319,10 +317,6 @@ export default function Admin() {
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <div className="text-right">
-                        <p className="text-sm text-muted-foreground">Total</p>
-                        <p className="font-heading text-xl font-bold">${order.totalAmount.toFixed(2)}</p>
-                      </div>
                       <Button variant="outline" size="sm">
                         Manage
                         <ChevronRight className="h-4 w-4" />

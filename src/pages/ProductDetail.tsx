@@ -41,7 +41,6 @@ export default function ProductDetail() {
   }
 
   const selectedPack = product.dosePacks.find(dp => dp.id === selectedPackId);
-  const totalPrice = selectedPack ? selectedPack.price * quantity : 0;
 
   const handleAddToCart = () => {
     if (!selectedPack) return;
@@ -141,7 +140,6 @@ export default function ProductDetail() {
                           <p className="text-sm text-muted-foreground">{pack.unitsPerPack} unit per pack</p>
                         </div>
                       </div>
-                      <p className="font-heading font-bold text-lg">${pack.price.toFixed(2)}</p>
                     </label>
                   ))}
                 </RadioGroup>
@@ -210,14 +208,8 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Total & Add to Cart */}
-            <div className="flex items-center justify-between p-4 rounded-lg bg-secondary/50">
-              <div>
-                <p className="text-sm text-muted-foreground">Total</p>
-                <p className="font-heading text-2xl font-bold text-foreground">
-                  ${totalPrice.toFixed(2)}
-                </p>
-              </div>
+            {/* Add to Cart */}
+            <div className="flex items-center justify-end p-4 rounded-lg bg-secondary/50">
               <Button 
                 variant="hero" 
                 size="lg"

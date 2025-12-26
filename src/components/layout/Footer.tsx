@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-card mt-auto">
       <div className="container-main py-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-center gap-6 text-center">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Syringe className="h-4 w-4 text-primary-foreground" />
@@ -32,7 +32,7 @@ export function Footer() {
           </nav>
           
           <p className="text-sm text-muted-foreground">
-            © 2024 Pharmsave Enterprises Limited. All rights reserved.
+            © 2025 Pharmsave Enterprises Limited. All rights reserved.
           </p>
         </div>
       </div>

@@ -2,7 +2,6 @@ export interface DosePack {
   id: string;
   doses: number;
   unitsPerPack: number;
-  price: number;
 }
 
 export interface Batch {
@@ -46,9 +45,9 @@ export const products: Product[] = [
     description: 'Live attenuated vaccine for active immunization of healthy chickens against Newcastle Disease. Provides robust protection with excellent field immunity.',
     activeIngredients: 'Newcastle Disease Virus, La Sota strain',
     dosePacks: [
-      { id: 'dp1', doses: 1000, unitsPerPack: 1, price: 45.00 },
-      { id: 'dp2', doses: 5000, unitsPerPack: 1, price: 180.00 },
-      { id: 'dp3', doses: 10000, unitsPerPack: 1, price: 320.00 },
+      { id: 'dp1', doses: 1000, unitsPerPack: 1 },
+      { id: 'dp2', doses: 5000, unitsPerPack: 1 },
+      { id: 'dp3', doses: 10000, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -74,9 +73,9 @@ export const products: Product[] = [
     description: 'Live vaccine for immunization against Infectious Bronchitis in chickens. Contains Mass and 793B strains for broad protection.',
     activeIngredients: 'Infectious Bronchitis Virus, Massachusetts and 793B strains',
     dosePacks: [
-      { id: 'dp1', doses: 1000, unitsPerPack: 1, price: 52.00 },
-      { id: 'dp2', doses: 5000, unitsPerPack: 1, price: 210.00 },
-      { id: 'dp3', doses: 10000, unitsPerPack: 1, price: 380.00 },
+      { id: 'dp1', doses: 1000, unitsPerPack: 1 },
+      { id: 'dp2', doses: 5000, unitsPerPack: 1 },
+      { id: 'dp3', doses: 10000, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -102,9 +101,9 @@ export const products: Product[] = [
     description: 'Intermediate plus strain vaccine for protection against Infectious Bursal Disease (Gumboro). Breaks through maternal antibodies effectively.',
     activeIngredients: 'Infectious Bursal Disease Virus, intermediate plus strain',
     dosePacks: [
-      { id: 'dp1', doses: 1000, unitsPerPack: 1, price: 48.00 },
-      { id: 'dp2', doses: 5000, unitsPerPack: 1, price: 195.00 },
-      { id: 'dp3', doses: 10000, unitsPerPack: 1, price: 350.00 },
+      { id: 'dp1', doses: 1000, unitsPerPack: 1 },
+      { id: 'dp2', doses: 5000, unitsPerPack: 1 },
+      { id: 'dp3', doses: 10000, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -130,8 +129,8 @@ export const products: Product[] = [
     description: 'Live fowl pox vaccine for active immunization of chickens. Wing web application for reliable uptake.',
     activeIngredients: 'Fowl Pox Virus, attenuated strain',
     dosePacks: [
-      { id: 'dp1', doses: 1000, unitsPerPack: 1, price: 38.00 },
-      { id: 'dp2', doses: 5000, unitsPerPack: 1, price: 155.00 },
+      { id: 'dp1', doses: 1000, unitsPerPack: 1 },
+      { id: 'dp2', doses: 5000, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -158,9 +157,9 @@ export const products: Product[] = [
     description: 'Live attenuated vaccine against Infectious Bronchitis variant strains. Provides cross-protection against multiple IB serotypes including variant 206.',
     activeIngredients: 'Infectious Bronchitis Virus, VAR 206 strain',
     dosePacks: [
-      { id: 'dp1', doses: 1000, unitsPerPack: 1, price: 42.00 },
-      { id: 'dp2', doses: 5000, unitsPerPack: 1, price: 175.00 },
-      { id: 'dp3', doses: 10000, unitsPerPack: 1, price: 310.00 },
+      { id: 'dp1', doses: 1000, unitsPerPack: 1 },
+      { id: 'dp2', doses: 5000, unitsPerPack: 1 },
+      { id: 'dp3', doses: 10000, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -186,9 +185,9 @@ export const products: Product[] = [
     description: 'Inactivated bivalent vaccine for protection against Salmonella Enteritidis and Salmonella Typhimurium in layers and breeders.',
     activeIngredients: 'Inactivated Salmonella Enteritidis and Salmonella Typhimurium',
     dosePacks: [
-      { id: 'dp1', doses: 500, unitsPerPack: 1, price: 85.00 },
-      { id: 'dp2', doses: 1000, unitsPerPack: 1, price: 155.00 },
-      { id: 'dp3', doses: 2500, unitsPerPack: 1, price: 350.00 },
+      { id: 'dp1', doses: 500, unitsPerPack: 1 },
+      { id: 'dp2', doses: 1000, unitsPerPack: 1 },
+      { id: 'dp3', doses: 2500, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -214,9 +213,9 @@ export const products: Product[] = [
     description: 'Inactivated bacterin vaccine for control of Mycoplasma gallisepticum (MG) infection in layers and breeders. Reduces respiratory disease and egg production losses.',
     activeIngredients: 'Inactivated Mycoplasma gallisepticum bacterin',
     dosePacks: [
-      { id: 'dp1', doses: 500, unitsPerPack: 1, price: 65.00 },
-      { id: 'dp2', doses: 1000, unitsPerPack: 1, price: 120.00 },
-      { id: 'dp3', doses: 2500, unitsPerPack: 1, price: 275.00 },
+      { id: 'dp1', doses: 500, unitsPerPack: 1 },
+      { id: 'dp2', doses: 1000, unitsPerPack: 1 },
+      { id: 'dp3', doses: 2500, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -244,9 +243,9 @@ export const products: Product[] = [
     description: 'Combination vaccine providing protection against Porcine Circovirus Type 2 (PCV2) and Mycoplasma hyopneumoniae. Single shot convenience with dual protection.',
     activeIngredients: 'Inactivated PCV2 and Mycoplasma hyopneumoniae antigens',
     dosePacks: [
-      { id: 'dp1', doses: 10, unitsPerPack: 1, price: 95.00 },
-      { id: 'dp2', doses: 25, unitsPerPack: 1, price: 210.00 },
-      { id: 'dp3', doses: 50, unitsPerPack: 1, price: 380.00 },
+      { id: 'dp1', doses: 10, unitsPerPack: 1 },
+      { id: 'dp2', doses: 25, unitsPerPack: 1 },
+      { id: 'dp3', doses: 50, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -272,9 +271,9 @@ export const products: Product[] = [
     description: 'Inactivated vaccine for protection of piglets against neonatal colibacillosis (E. coli) and Clostridium perfringens type C enteritis via sow vaccination.',
     activeIngredients: 'Inactivated E. coli (F4ab, F4ac, F5, F6) adhesins and C. perfringens type C toxoid',
     dosePacks: [
-      { id: 'dp1', doses: 10, unitsPerPack: 1, price: 75.00 },
-      { id: 'dp2', doses: 25, unitsPerPack: 1, price: 165.00 },
-      { id: 'dp3', doses: 50, unitsPerPack: 1, price: 295.00 },
+      { id: 'dp1', doses: 10, unitsPerPack: 1 },
+      { id: 'dp2', doses: 25, unitsPerPack: 1 },
+      { id: 'dp3', doses: 50, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
@@ -300,9 +299,9 @@ export const products: Product[] = [
     description: 'Intradermal, single-dose vaccine against Mycoplasma hyopneumoniae. Needle-free administration for improved animal welfare and biosecurity.',
     activeIngredients: 'Inactivated Mycoplasma hyopneumoniae, J strain',
     dosePacks: [
-      { id: 'dp1', doses: 50, unitsPerPack: 1, price: 180.00 },
-      { id: 'dp2', doses: 100, unitsPerPack: 1, price: 320.00 },
-      { id: 'dp3', doses: 250, unitsPerPack: 1, price: 720.00 },
+      { id: 'dp1', doses: 50, unitsPerPack: 1 },
+      { id: 'dp2', doses: 100, unitsPerPack: 1 },
+      { id: 'dp3', doses: 250, unitsPerPack: 1 },
     ],
     coldChainRequired: true,
     storageTempRange: '2-8°C',
