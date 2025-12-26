@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Package, Calendar, ChevronRight, Filter } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -12,7 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { sampleOrders, OrderStatus } from '@/data/orders';
+import { sampleOrders, OrderStatus, Order } from '@/data/orders';
+import { OrderDetailDialog } from '@/components/orders/OrderDetailDialog';
 import { format } from 'date-fns';
 
 const statusOptions: { value: OrderStatus | 'all'; label: string }[] = [
@@ -27,6 +28,8 @@ const statusOptions: { value: OrderStatus | 'all'; label: string }[] = [
 
 export default function Orders() {
   const [statusFilter, setStatusFilter] = useState<OrderStatus | 'all'>('all');
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   // For demo, show orders for "client-1" (Green Valley Farms)
   const clientOrders = sampleOrders.filter(o => o.clientId === 'client-1');
@@ -34,6 +37,11 @@ export default function Orders() {
   const filteredOrders = statusFilter === 'all' 
     ? clientOrders 
     : clientOrders.filter(o => o.status === statusFilter);
+
+  const handleViewDetails = (order: Order) => {
+    setSelectedOrder(order);
+    setDialogOpen(true);
+  };
 
   return (
     <Layout>
@@ -114,19 +122,11 @@ export default function Orders() {
                       </div>
                     </div>
 
-                    {/* Total & Action */}
-                    <div className="flex items-center gap-6">
-                      <div className="text-right">
-                        <p className="text-sm text-muted-foreground">Total</p>
-                        <p className="font-heading text-xl font-bold">
-                          ${order.totalAmount.toFixed(2)}
-                        </p>
-                      </div>
-                      <Button variant="outline" size="sm">
-                        View Details
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    {/* Action */}
+                    <Button variant="outline" size="sm" onClick={() => handleViewDetails(order)}>
+                      View Details
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
                   </div>
 
                   {/* Delivery dates */}
@@ -161,6 +161,13 @@ export default function Orders() {
             </Link>
           </div>
         )}
+
+        {/* Order Detail Dialog */}
+        <OrderDetailDialog 
+          order={selectedOrder} 
+          open={dialogOpen} 
+          onOpenChange={setDialogOpen} 
+        />
       </div>
     </Layout>
   );

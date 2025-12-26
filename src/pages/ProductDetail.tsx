@@ -110,11 +110,38 @@ export default function ProductDetail() {
               <p className="text-muted-foreground">{product.description}</p>
             </div>
 
+            {/* Product Details Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg bg-secondary/50">
+                <p className="text-sm font-medium text-foreground mb-1">Batch Number</p>
+                <p className="text-sm text-muted-foreground">{product.batchNumber}</p>
+              </div>
+              <div className="p-4 rounded-lg bg-secondary/50">
+                <p className="text-sm font-medium text-foreground mb-1">Manufacturer</p>
+                <p className="text-sm text-muted-foreground">{product.manufacturer}</p>
+              </div>
+            </div>
+
             {/* Active ingredients */}
             <div className="p-4 rounded-lg bg-secondary/50">
               <p className="text-sm font-medium text-foreground mb-1">Active Ingredients</p>
               <p className="text-sm text-muted-foreground">{product.activeIngredients}</p>
             </div>
+
+            {/* Batch Expiry Info */}
+            {product.batches.length > 0 && (
+              <div className="p-4 rounded-lg bg-secondary/50">
+                <p className="text-sm font-medium text-foreground mb-2">Available Batches</p>
+                <div className="space-y-2">
+                  {product.batches.map((batch, index) => (
+                    <div key={index} className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">{batch.batchNumber}</span>
+                      <span className="text-muted-foreground">Exp: {batch.expiryDate} ({batch.quantity} units)</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Dose Pack Selection */}
             <Card>

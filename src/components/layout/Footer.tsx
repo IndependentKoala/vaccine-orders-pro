@@ -26,9 +26,6 @@ export function Footer() {
             <Link to="/admin" className="hover:text-primary transition-colors">
               Admin
             </Link>
-            <a href="#" className="hover:text-primary transition-colors">
-              Support
-            </a>
           </nav>
           
           <p className="text-sm text-muted-foreground">
