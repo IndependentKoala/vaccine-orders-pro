@@ -12,7 +12,6 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
-  const lowestPrice = Math.min(...product.dosePacks.map(dp => dp.price));
   const stockStatus = product.availableStock > 1000 ? 'high' : product.availableStock > 100 ? 'low' : 'out';
 
   return (
@@ -62,17 +61,10 @@ export function ProductCard({ product, className }: ProductCardProps) {
             </Badge>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-border">
-            <div>
-              <p className="text-xs text-muted-foreground">From</p>
-              <p className="font-heading font-bold text-lg text-foreground">
-                ${lowestPrice.toFixed(2)}
-              </p>
-            </div>
-            
+          <div className="flex items-center justify-end pt-2 border-t border-border">
             <Link to={`/product/${product.id}`}>
               <Button size="sm" className="group/btn">
-                View
+                View Details
                 <ChevronRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
               </Button>
             </Link>

@@ -11,7 +11,7 @@ import { toast } from '@/hooks/use-toast';
 import { format, addDays } from 'date-fns';
 
 export default function Cart() {
-  const { items, removeItem, updateQuantity, updateDeliveryDate, clearCart, totalAmount } = useCart();
+  const { items, removeItem, updateQuantity, updateDeliveryDate, clearCart } = useCart();
 
   const handleCheckout = () => {
     toast({
@@ -133,11 +133,6 @@ export default function Cart() {
                             />
                           </PopoverContent>
                         </Popover>
-
-                        {/* Line Total */}
-                        <p className="font-heading font-bold text-lg">
-                          ${(item.dosePack.price * item.quantity).toFixed(2)}
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -157,18 +152,17 @@ export default function Cart() {
                   {items.map((item) => (
                     <div key={`${item.product.id}-${item.dosePack.id}`} className="flex justify-between text-sm">
                       <span className="text-muted-foreground">
-                        {item.product.name} × {item.quantity}
+                        {item.product.name}
                       </span>
-                      <span>${(item.dosePack.price * item.quantity).toFixed(2)}</span>
+                      <span>{item.quantity} × {item.dosePack.doses.toLocaleString()} doses</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="border-t border-border pt-4">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Total</span>
-                    <span className="font-heading text-2xl font-bold">${totalAmount.toFixed(2)}</span>
-                  </div>
+                  <p className="text-sm text-muted-foreground text-center">
+                    {items.length} item{items.length !== 1 ? 's' : ''} in cart
+                  </p>
                 </div>
 
                 <Button 
